@@ -3,6 +3,7 @@ import os
 
 # Module for reading CSV files
 import csv
+textpath = os.path.join("PyBank_Final","Financial_Results.txt")
 
 csvpath = os.path.join("budget_data.csv")
 with open(csvpath, newline='') as csvfile:
@@ -70,3 +71,14 @@ with open(csvpath, newline="") as csvfile:
     print(f"Greatest Increase in Revenue: {greatest_inc_date}, ${greatest_increase}")
     print(f"Greatest Decrease in Revenue: {greatest_dec_date}, ${greatest_decrease}")
 
+# Write file to text Election_Results.txt with open(textpath, 'w', newline='') as textfile:
+with open(textpath, 'w', newline='') as textfile:
+    csvwriter = csv.writer(textfile)
+    csvwriter.writerow(["Financial Results"])
+    csvwriter.writerow(["------------------------------------------------"])
+    csvwriter.writerow([f"Total Months: {total_months}"])
+    csvwriter.writerow([f"Total Revenue: ${total_amount}"])
+    csvwriter.writerow([f"Averange Revenue Change: ${sum_changeprofloss / (total_months - 1)}"])
+    csvwriter.writerow([f"Greatest Increase in Revenue: {greatest_inc_date}, ${greatest_increase}"])
+    csvwriter.writerow([f"Greatest Decrease in Revenue: {greatest_dec_date}, ${greatest_decrease}"])
+    csvwriter.writerow(["------------------------------------------------"])

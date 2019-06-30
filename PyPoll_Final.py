@@ -3,6 +3,7 @@ import os
 
 # Module for reading CSV files
 import csv
+textpath = os.path.join("PyPoll_Final","Election_Results.txt")
 
 csvpath = os.path.join("election_data.csv")
 with open(csvpath, newline='') as csvfile:
@@ -37,9 +38,20 @@ with open(csvpath, newline='') as csvfile:
     print("Total Votes: " + str(votes))
     print("___________________")
     for i in range(len(candidates)):
-        print(str(candidates[i])+": " + str(round(vote_counts[i]*100/votes))+".000% ("+ str(vote_counts[i])+")")
+        print(str(candidates[i]) + ": " + str(round(vote_counts[i]*100/votes))+".000% ("+ str(vote_counts[i])+")")
     print("___________________")
     print("Winner: " + winner)       
     print("___________________")
 
-
+# Write file to text Election_Results.txt with open(textpath, 'w', newline='') as textfile:
+with open(textpath, 'w', newline='') as textfile:
+    csvwriter = csv.writer(textfile)
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["------------------------------------------------"])
+    csvwriter.writerow(["Total Votes: " + str(votes)])
+    csvwriter.writerow(["------------------------------------------------"])
+    for i in range(len(candidates)):
+        csvwriter.writerow([str(candidates[i]) + ": " + str(round(vote_counts[i]*100/votes))+".000% ("+ str(vote_counts[i])+")"])
+    csvwriter.writerow(["------------------------------------------------"])
+    csvwriter.writerow(["Winner: " + winner])
+    csvwriter.writerow(["------------------------------------------------"])
